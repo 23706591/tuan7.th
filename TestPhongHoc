@@ -1,0 +1,106 @@
+package NguyenHuuTien_23706591;
+
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
+import java.util.*;
+
+
+public class TestPhongHoc {
+	private static Scanner sc;
+	
+	public static void main(String[] args) {
+		sc = new Scanner(System.in);
+	PhongHoc p1 = new PhongLyThuyet("V10.01", "V", 200 , 10 , true);
+	PhongHoc p2 = new PhongLyThuyet("X2.11", "X", 160 , 25, false);
+	PhongHoc p3 = new PhongThucHanh("H5.2", "H", 90, 20, 65);
+	PhongHoc p4 = new PhongThiNghiem("F1.01", "F", 100, 30, "Hoa Hoc", 30, true);
+	
+	ListPhongHoc ds = new ListPhongHoc();
+	ds.themPhongHoc(p1);
+	ds.themPhongHoc(p2);
+	ds.themPhongHoc(p3);
+	ds.themPhongHoc(p4);
+	int chon;
+	do {
+		System.out.println("1. Xuat Danh Sach Phong Hoc");
+		System.out.println("2. Tim Kiem Phong Hoc");
+		System.out.println("3. Danh Sach Cac Phong Hoc Dat Chuan");
+		System.out.println("4. Tong So Phong Hoc");
+		System.out.println("5. Sap Xep Dien Tich");
+		System.out.println("6. Sap Xep THeo Bong Den");
+		System.out.println("7. Cap Nhat May Tinh Cho Phong Thuc Hanh");
+		System.out.println("8. In Danh Sach Phong Hoc Co May Chieu");
+		System.out.println("9. Xoa Phong HOc Theo Ma Phong");
+		System.out.println("10. In Phong Hoc Co So May Tinh Tren 60");
+		System.out.println("11. Thoat !");
+		System.out.println("===============MENU LUA CHON===============");
+		
+		chon = sc.nextInt();
+		switch(chon) {
+		case 1:
+			ds.XuatDanhSachPhongHoc();
+			break;
+		case 2:
+			sc.nextLine();
+			System.out.println("Nhap ma phong can tim : ");
+			String maPhong = sc.nextLine();
+			PhongHoc ph = ds.timKiem(maPhong);
+			if (ph!= null) {
+				System.out.println(ph);
+			} else {
+				System.out.println("Khong tim thay theo yeu cau..");	
+			}
+			break;
+		case 3:
+			System.out.println("Danh sach phong dat chuan");
+			ds.dsPhongHocDatChuan();
+			break;
+		case 4:
+			System.out.println("Tong so phong hoc la : "+ds.TongSoPhongHoc());
+			break;
+		case 5:
+			ds.sapXepDienTich();
+			break;
+		case 6:
+			ds.sapXepTheoBongDen();
+			break;
+		case 7:
+			sc.nextLine();
+			System.out.println("Nhap ma phong can cap nhat: ");
+			maPhong = sc.nextLine();
+			int soMayTinh = sc.nextInt();
+			if (ds.capNhatSoMay(maPhong, soMayTinh)) {
+				System.out.println("Cap nhat thanh cong");
+			} else {
+				System.out.println("Khong cap nhat duoc");
+			}
+			break;
+		case 8:
+			ds.xuatDanhSachPhongHocLyThuyetMayChieu();
+			break;
+		case 9:
+			sc.nextLine();
+			System.out.println("Nhap ma phong can xoa: ");
+			maPhong = sc.nextLine();
+			int hoi = J0ptionPane.showConfirmDialog(null, "Chac chan xoa khong?", "Thong Bao", J0ptionPane.YES_NO_OPTION);
+			if(hoi == JOptionPane.YES_OPTION) {
+				if(ds.XoaPhongHoc(maPhong))
+					System.out.println("Xoa thanh cong!");
+				else 
+					System.out.println("Khong xoa duoc!");
+			}
+			break;
+		case 10:
+			ds.InPhongMayTinhTren60();
+			break;
+			default: chon = 12;
+			break;
+			
+		}
+		
+	}while(chon!=11);
+	}
+
+}
