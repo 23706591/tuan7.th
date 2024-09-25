@@ -1,0 +1,25 @@
+package NguyenHuuTien_23706591;
+
+public class PhongLyThuyet extends PhongHoc {
+	private boolean coMayChieu;
+
+	public PhongLyThuyet(String maPhong, String dayNha, double dienTich, int soBongDen, boolean coMayChieu) {
+		super(maPhong, dayNha, dienTich, soBongDen);
+		this.coMayChieu = coMayChieu;
+	}
+	public boolean isCoMayChieu() {
+		return coMayChieu;
+	}
+	public void setCoMayChieu(boolean coMayChieu) {
+		this.coMayChieu = coMayChieu;
+	}
+	@Override
+	public String toString() {
+		String mayChieu = (coMayChieu)? "Co May Chieu" : "Khong Co May Chieu";
+		return super.toString() + String.format(format:"%20s", mayChieu);
+	}
+	public boolean datChuan() {
+		return (duAnhSang() && coMayChieu);
+	}
+	
+}
